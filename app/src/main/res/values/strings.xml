@@ -3,4 +3,9 @@
 
     <string name="home">Home</string>
     <string name="status">Status</string>
+
+    <string name="Rekomendasi">Rekomendasi</string>
+    <string name="Pilih">Pilih</string>
+    <string name="Custom">Custom</string>
+
 </resources>
