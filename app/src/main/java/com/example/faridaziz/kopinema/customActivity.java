@@ -2,12 +2,41 @@ package com.example.faridaziz.kopinema;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-public class customActivity extends AppCompatActivity {
+public class customActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom);
+
+        Spinner spinner = findViewById(R.id.spiner1);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.nomer, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+        Spinner spinnerr = findViewById(R.id.spiner2);
+        ArrayAdapter<CharSequence> adapterr = ArrayAdapter.createFromResource(this, R.array.nomer, android.R.layout.simple_spinner_item);
+        adapterr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerr.setAdapter(adapterr);
+        spinnerr.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
