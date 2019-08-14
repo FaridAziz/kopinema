@@ -11,22 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
-    private CardView RekomendasiCard, PilihCard, CustomCard;
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RekomendasiCard = findViewById(R.id.menu_rekomendasi);
-        PilihCard = findViewById(R.id.menu_pilih);
-        CustomCard = findViewById(R.id.menu_custom);
-
-        RekomendasiCard.setOnClickListener(this);
-        PilihCard.setOnClickListener(this);
-        CustomCard.setOnClickListener(this);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -55,26 +46,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             };
 
-    @Override
-    public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()){
-            case R.id.menu_rekomendasi:{
-                intent = new Intent(this,rekomendasiActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_pilih:{
-                intent = new Intent(this,pilihActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.menu_custom:{
-                intent = new Intent(this,customActivity.class);
-                startActivity(intent);
-                break;
-            }
-        }
-    }
 }
 
