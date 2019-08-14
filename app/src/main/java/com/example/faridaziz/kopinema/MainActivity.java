@@ -11,7 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
     private CardView RekomendasiCard, PilihCard, CustomCard;
 
     @Override
@@ -54,10 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             };
 
-
     @Override
     public void onClick(View v) {
-
         Intent intent;
         switch (v.getId()){
             case R.id.menu_rekomendasi:{
@@ -66,16 +65,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.menu_pilih:{
-                intent = new Intent(this,rekomendasiActivity.class);
+                intent = new Intent(this,pilihActivity.class);
                 startActivity(intent);
                 break;
             }
             case R.id.menu_custom:{
-                intent = new Intent(this,rekomendasiActivity.class);
+                intent = new Intent(this,customActivity.class);
                 startActivity(intent);
                 break;
             }
         }
-
     }
 }
+
