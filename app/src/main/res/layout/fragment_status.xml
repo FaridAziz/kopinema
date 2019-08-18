@@ -5,10 +5,10 @@
     android:background="@drawable/bg">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/status"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        android:text="   Status"
+        android:textColor="#cecece"
+        android:textSize="20dp"/>
 
 </RelativeLayout>

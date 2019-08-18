@@ -3,21 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg">
+    android:background="@drawable/bg"
+    android:orientation="vertical">
 
-    <GridLayout
-        android:columnCount="1"
-        android:rowCount="3"
+    <LinearLayout
         android:alignmentMode="alignMargins"
         android:columnOrderPreserved="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="   Home"
+            android:textColor="#cecece"
+            android:textSize="20dp"/>
 
         <android.support.v7.widget.CardView
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/menu_rekomendasi"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
@@ -49,7 +56,7 @@
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/menu_pilih"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
@@ -81,7 +88,7 @@
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/menu_custom"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
@@ -109,9 +116,7 @@
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-    </GridLayout>
-
-
+    </LinearLayout>
 
 </ScrollView>
 
