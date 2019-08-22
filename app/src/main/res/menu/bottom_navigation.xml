@@ -10,4 +10,9 @@
         android:id="@+id/nav_status"
         android:icon="@drawable/ic_status"
         android:title="Status"/>
+
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/ic_settings_24dp"
+        android:title="Setting"/>
 </menu>

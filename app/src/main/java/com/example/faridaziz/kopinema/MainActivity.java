@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.faridaziz.kopinema.view.SettingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -34,9 +35,13 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_home:
                             selectedFragment = new HomeFragment();
                             break;
+
                         case R.id.nav_status:
                             selectedFragment = new StatusFragment();
                             break;
+
+                        case R.id.nav_setting:
+                            selectedFragment = new SettingFragment();
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
