@@ -1,13 +1,13 @@
 package com.example.faridaziz.kopinema;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class customActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
