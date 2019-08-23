@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.faridaziz.kopinema.view.SettingFragment;
+import com.example.faridaziz.kopinema.view.SetPrefFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences sharedPreferences = new SharedPreferences(this);
+        Log.d(this.getClass().getSimpleName(), sharedPreferences.getUser());
+        Log.d(this.getClass().getSimpleName(), sharedPreferences.getIdBoard());
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
+                    Bundle bundle = new Bundle();
 
                     switch (item.getItemId()) {
                         case R.id.nav_home:
@@ -41,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case R.id.nav_setting:
-                            selectedFragment = new SettingFragment();
+                            selectedFragment = new SetPrefFragment();
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
