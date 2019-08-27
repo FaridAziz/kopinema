@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.faridaziz.kopinema.view.SetPrefFragment;
+import com.example.faridaziz.kopinema.view.fragments.SettingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -19,14 +19,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences sharedPreferences = new SharedPreferences(this);
-        Log.d(this.getClass().getSimpleName(), sharedPreferences.getUser());
-        Log.d(this.getClass().getSimpleName(), sharedPreferences.getIdBoard());
-
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new HomeFragment())
+                .commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -46,10 +45,13 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case R.id.nav_setting:
-                            selectedFragment = new SetPrefFragment();
+                            selectedFragment = new SettingFragment();
+                            break;
                     }
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, selectedFragment)
+                            .commit();
 
                     return true;
                 }

@@ -1,4 +1,4 @@
-package com.example.faridaziz.kopinema.view
+package com.example.faridaziz.kopinema.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,15 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.faridaziz.kopinema.R
 import com.example.faridaziz.kopinema.view_model.SettingViewModel
-import kotlinx.android.synthetic.main.fragment_setting.*
+import kotlinx.android.synthetic.main.fragment_set_wifi.*
 
 /**
- * class [SettingFragment]
+ * class [SetWifiFragment]
  * Merupakan class yang menangani masalah
  * pada view.
  */
 
-class SettingFragment
+class SetWifiFragment
     : Fragment() {
 
     // Membuat Variabel dimana akan dilakukan inisialisasi
@@ -28,7 +28,7 @@ class SettingFragment
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_setting, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_set_wifi, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
