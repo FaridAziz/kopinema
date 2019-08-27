@@ -2,6 +2,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -37,6 +38,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.2"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.2"
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:17.1.0'
+    implementation 'com.google.firebase:firebase-database:19.0.0'
 }
 
 repositories {
