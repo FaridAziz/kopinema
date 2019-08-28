@@ -28,12 +28,12 @@ class SettingFragment
         }
 
         // Set username
-        username.setOnClickListener { attachFragment(SharedPreferences.USERNAME) }
+        menu_username.setOnClickListener { attachFragment(SharedPreferences.USERNAME) }
 
         // Set Id Board
-        id_board.setOnClickListener { attachFragment(SharedPreferences.ID_BOARD) }
+        menu_device_id.setOnClickListener { attachFragment(SharedPreferences.ID_BOARD) }
 
         // Set Wifi
-        wifi.setOnClickListener { attachFragment("WIFI") }
+        menu_device_network.setOnClickListener { attachFragment("WIFI") }
     }
 }

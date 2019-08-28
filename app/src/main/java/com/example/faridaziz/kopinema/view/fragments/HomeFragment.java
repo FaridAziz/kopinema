@@ -13,12 +13,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.faridaziz.kopinema.R;
 import com.example.faridaziz.kopinema.view.activities.CustomActivity;
-import com.example.faridaziz.kopinema.view.activities.PilihActivity;
+import com.example.faridaziz.kopinema.view.activities.ListRatioActivity;
 import com.example.faridaziz.kopinema.view.activities.RecommendationActivity;
 
-public class HomeFragment extends Fragment implements View.OnClickListener{
-    private CardView listCard;
-    private CardView customCard;
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Nullable
     @Override
@@ -34,8 +32,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         // Binding View
         CardView recomendationCard = (CardView) view.findViewById(R.id.menu_recomendation);
-        listCard = (CardView) view.findViewById(R.id.menu_list);
-        customCard = (CardView) view.findViewById(R.id.menu_custom);
+        CardView listCard = (CardView) view.findViewById(R.id.menu_list);
+        CardView customCard = (CardView) view.findViewById(R.id.menu_custom);
 
         // Add OnClick Listener
         recomendationCard.setOnClickListener(this);
@@ -47,13 +45,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()){
-            case R.id.menu_recomendation:
-                intent = new Intent(getActivity(), RecommendationActivity.class);
+            case R.id.menu_list:
+                intent = new Intent(getActivity(), ListRatioActivity.class);
                 startActivity(intent);
                 break;
 
-            case R.id.menu_list:
-                intent = new Intent(getActivity(), PilihActivity.class);
+            case R.id.menu_recomendation:
+                intent = new Intent(getActivity(), RecommendationActivity.class);
                 startActivity(intent);
                 break;
 

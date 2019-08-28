@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:scrollbars="none"
     tools:context=".view.fragments.HomeFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
 
         <TextView
             android:text="Buat Kopi Anda Dengan :"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:textColor="@color/mainColor"
+            android:textColor="@color/colorMain"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:layout_width="match_parent"
@@ -34,13 +37,12 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                >
+                android:layout_margin="16dp" >
                 <ImageView
                     android:id="@+id/img_list"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:src="@drawable/list"
+                    android:src="@drawable/ic_list"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -48,7 +50,7 @@
                     android:id="@+id/txt_list"
                     android:text="Pilih Rasio"
                     android:textSize="18sp"
-                    android:textColor="@color/mainColor"
+                    android:textColor="@color/colorMain"
                     android:textStyle="bold"
                     android:textAllCaps="true"
                     android:layout_width="wrap_content"
@@ -80,7 +82,7 @@
                     android:id="@+id/img_recommend"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:src="@drawable/recomended"
+                    android:src="@drawable/ic_home"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -88,7 +90,7 @@
                     android:id="@+id/txt_recommend"
                     android:text="Rekomendasi"
                     android:textSize="18sp"
-                    android:textColor="@color/mainColor"
+                    android:textColor="@color/colorMain"
                     android:textStyle="bold"
                     android:textAllCaps="true"
                     android:layout_width="wrap_content"
@@ -110,6 +112,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
             >
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -120,15 +123,15 @@
                     android:id="@+id/img_custom"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:src="@drawable/custom"
+                    android:src="@drawable/ic_custom"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/txt_custom"
-                    android:text="Pilih Rasio"
+                    android:text="Buat Rasio Kopi "
                     android:textSize="18sp"
-                    android:textColor="@color/mainColor"
+                    android:textColor="@color/colorMain"
                     android:textStyle="bold"
                     android:textAllCaps="true"
                     android:layout_width="wrap_content"

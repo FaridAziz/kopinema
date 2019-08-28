@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/main_background"
-    tools:context=".view.activities.PilihActivity">
+    tools:context=".view.activities.ListRatioActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:text="List Rasio :"
-            android:textColor="@color/mainColor"
+            android:textColor="@color/colorMain"
             android:textSize="18dp"
             android:textStyle="bold"/>
 

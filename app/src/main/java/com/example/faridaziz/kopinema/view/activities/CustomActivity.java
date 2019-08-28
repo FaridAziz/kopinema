@@ -20,7 +20,7 @@ public class CustomActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom);
 
-        Spinner spinner = findViewById(R.id.spiner1);
+        Spinner spinner = findViewById(R.id.spinner_water);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.nomer, android.R.layout.simple_spinner_item);
 
@@ -28,7 +28,7 @@ public class CustomActivity
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        Spinner spinnerr = findViewById(R.id.spiner2);
+        Spinner spinnerr = findViewById(R.id.spinner_coffee);
         ArrayAdapter<CharSequence> adapterr = ArrayAdapter.createFromResource(
                 this, R.array.nomer, android.R.layout.simple_spinner_item);
 

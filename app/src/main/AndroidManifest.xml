@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activities.PilihActivity" />
+        <activity android:name=".view.activities.ListRatioActivity" />
         <activity android:name=".view.activities.RecommendationActivity" />
         <activity android:name=".view.activities.CustomActivity"/>
         <activity android:name=".view.activities.SettingActivity" />
