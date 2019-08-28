@@ -1,10 +1,12 @@
-package com.example.faridaziz.kopinema;
+package com.example.faridaziz.kopinema.view.activities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class rekomendasiActivity extends AppCompatActivity {
+import com.example.faridaziz.kopinema.R;
+
+public class RecommendationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

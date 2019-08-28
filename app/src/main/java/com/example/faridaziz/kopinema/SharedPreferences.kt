@@ -1,10 +1,9 @@
 package com.example.faridaziz.kopinema
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 
-class SharedPreferences(activity: AppCompatActivity) {
-    val sharedPreferences = activity.getSharedPreferences(USERNAME, Context.MODE_PRIVATE)
+class SharedPreferences(app: Context) {
+    val sharedPreferences = app.getSharedPreferences(USERNAME, Context.MODE_PRIVATE)
 
     companion object {
         const val ID_BOARD = "ID_BOARD"

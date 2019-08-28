@@ -1,4 +1,4 @@
-package com.example.faridaziz.kopinema;
+package com.example.faridaziz.kopinema.view.activities;
 
 import android.os.Bundle;
 
@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.faridaziz.kopinema.R;
+import com.example.faridaziz.kopinema.pilihAdapter;
+import com.example.faridaziz.kopinema.pilihItem;
+
 import java.util.ArrayList;
 
-public class    pilihActivity extends AppCompatActivity {
+public class PilihActivity extends AppCompatActivity {
     private RecyclerView mRecycleView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;

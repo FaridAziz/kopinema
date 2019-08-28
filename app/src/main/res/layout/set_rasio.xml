@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/main_background"
+    android:paddingTop="164dp">
+    <TextView
+        android:id="@+id/lbl_perbandingan"
+        android:text="PERBANDINGAN"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/mainColor"
+        android:textAlignment="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/txt_ratio_water"
+        android:elevation="4dp"
+        android:text="123"
+        android:textAlignment="center"
+        android:textSize="32dp"
+        android:background="@android:color/white"
+        android:layout_width="128dp"
+        android:layout_height="96dp"
+        android:paddingTop="16dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingBottom="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/lbl_perbandingan"
+        app:layout_constraintEnd_toEndOf="@id/center_guideline"/>
+
+    <TextView
+        android:id="@+id/lbl_ratio_water"
+        android:text="AIR"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_ratio_water"
+        app:layout_constraintStart_toStartOf="@id/txt_ratio_water"
+        app:layout_constraintEnd_toEndOf="@id/txt_ratio_water"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/center_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5"
+        />
+
+    <EditText
+        android:id="@+id/txt_ratio_coffee"
+        android:elevation="4dp"
+        android:text="1"
+        android:textAlignment="center"
+        android:textSize="32dp"
+        android:background="@android:color/white"
+        android:layout_width="128dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:paddingTop="16dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/lbl_perbandingan"
+        app:layout_constraintStart_toEndOf="@id/center_guideline"/>
+
+    <TextView
+        android:id="@+id/lbl_ratio_coffee"
+        android:text="KOPI"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_ratio_coffee"
+        app:layout_constraintStart_toStartOf="@id/txt_ratio_coffee"
+        app:layout_constraintEnd_toEndOf="@id/txt_ratio_coffee"/>
+
+    <Button
+        android:background="@color/mainColor"
+        android:text="MULAI"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="46dp"
+        app:layout_constraintTop_toBottomOf="@id/lbl_ratio_coffee"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

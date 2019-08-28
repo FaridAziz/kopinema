@@ -38,7 +38,7 @@ class SetPrefFragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sharedPreferences = SharedPreferences(activity as AppCompatActivity)
+        val sharedPreferences = SharedPreferences(context!!)
         val set_ = arguments?.getString(ARG_) ?: ""
 
         // Set Text
