@@ -19,13 +19,13 @@
         <activity android:name=".view.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".view.fragments.ListRatioFragment" />
         <activity android:name=".view.fragments.RecommendationFragment" />
-        <activity android:name=".view.fragments.CustomFragment"/>
+        <activity android:name=".view.fragments.CustomFragment" />
         <activity android:name=".view.activities.SettingActivity" />
+        <activity android:name=".view.activities.SetRatioActivity" />
     </application>
 </manifest>

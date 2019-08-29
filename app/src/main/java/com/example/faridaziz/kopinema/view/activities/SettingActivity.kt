@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.faridaziz.kopinema.R
 import com.example.faridaziz.kopinema.SharedPreferences
-import com.example.faridaziz.kopinema.view.fragments.SetPrefFragment
+import com.example.faridaziz.kopinema.view.fragments.SetUserOrDIdFragment
 import com.example.faridaziz.kopinema.view.fragments.SetWifiFragment
 
 class SettingActivity
@@ -23,9 +23,9 @@ class SettingActivity
 
         when(arg) {
             SharedPreferences.ID_BOARD, SharedPreferences.USERNAME -> {
-                val target = SetPrefFragment()
+                val target = SetUserOrDIdFragment()
 
-                bundle.putString(SetPrefFragment.ARG_, arg)
+                bundle.putString(SetUserOrDIdFragment.ARG_, arg)
                 target.arguments = bundle
                 fragment.replace(R.id.wrapper, target)
             }

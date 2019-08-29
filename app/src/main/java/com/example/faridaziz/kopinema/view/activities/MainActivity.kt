@@ -1,0 +1,88 @@
+package com.example.faridaziz.kopinema.view.activities
+
+import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.faridaziz.kopinema.App
+import com.example.faridaziz.kopinema.R
+import com.example.faridaziz.kopinema.SharedPreferences
+import com.example.faridaziz.kopinema.models.Board
+import com.example.faridaziz.kopinema.view.fragments.menu.HomeFragment
+import com.example.faridaziz.kopinema.view.fragments.menu.SettingFragment
+import com.example.faridaziz.kopinema.view.fragments.menu.StatusFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+
+class MainActivity : AppCompatActivity() {
+    val TAG = this.javaClass.simpleName
+
+    companion object {
+        const val ARG = "ARG" }
+
+    val sharedPref by lazy {
+        SharedPreferences(this) }
+
+    private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        val selectedFragment: Fragment = when (item.itemId) {
+            R.id.nav_home -> HomeFragment()
+            R.id.nav_status -> StatusFragment()
+            R.id.nav_setting -> SettingFragment()
+            else -> Fragment()
+        }
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, selectedFragment)
+                .commit()
+
+        true
+    }
+
+    private val statusBoardListener = object : ValueEventListener {
+        override fun onCancelled(p0: DatabaseError) { Log.e(TAG, "Database Error") }
+
+        override fun onDataChange(p0: DataSnapshot) {
+            // This method is called once with the initial value and again
+            // whenever data at this location is updated.
+            for (data in p0.children) {
+                val value = data.getValue(Board::class.java) as Board
+
+                if (value.id == sharedPref.idBoard) {
+                    sharedPref.deviceIsActive = value.isActive
+                    sharedPref.deviceOnProcess = value.isOnProcess
+                }
+            }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val arg = intent.getStringExtra(ARG) ?: "default"
+
+        // Get Instance Realtime Database
+        val database = FirebaseDatabase.getInstance()
+
+        // Read Realtime Database
+        // Reference : /database/board
+        database.getReference(App.DB).child(App.BOARD)
+                .addValueEventListener(statusBoardListener)
+
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNav.setOnNavigationItemSelectedListener(navListener)
+
+        // TODO Testing parsing argument
+        val fragment = when(arg) {
+            "status" -> SettingFragment()
+            else -> HomeFragment()
+        }
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit()
+    }
+}

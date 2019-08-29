@@ -1,8 +1,14 @@
-package com.example.faridaziz.kopinema.view.activities;
+package com.example.faridaziz.kopinema.view.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,15 +18,22 @@ import com.example.faridaziz.kopinema.models.ItemRatio;
 
 import java.util.ArrayList;
 
-public class ListRatioActivity extends AppCompatActivity {
+public class ListRatioFragment extends Fragment {
+
+    @Nullable
+    @Override
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
+    ) { return inflater.inflate(R.layout.fragment_list_ratio, container, false); }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_ratio);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         ArrayList<ItemRatio> pilihList = new ArrayList<>();
-        RecyclerView mRecycleView = findViewById(R.id.recycleView);
+        RecyclerView mRecycleView = view.findViewById(R.id.recycleView);
         RecyclerView.Adapter mAdapter = new ListRatioAdapter(pilihList);
 
         // Set Data
@@ -32,7 +45,7 @@ public class ListRatioActivity extends AppCompatActivity {
 
         // Set Data to RecyclerView
         mRecycleView.setHasFixedSize(true);
-        mRecycleView.setLayoutManager(new LinearLayoutManager(this));
+        mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycleView.setAdapter(mAdapter);
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.faridaziz.kopinema.R
@@ -38,8 +39,13 @@ class SetWifiFragment
             val ssid = txt_ssid.text.toString()
             val pass = txt_password.text.toString()
 
-            // Send Data To Repository
-            viewModel.sendSetting(ssid, pass, this)
+            if (ssid.isNotEmpty() && pass.isNotEmpty()) {
+                // Send Data To Repository
+                viewModel.sendSetting(ssid, pass, this)
+            } else {
+                Toast.makeText(context, "Input Tidak boleh Kosong", Toast.LENGTH_SHORT)
+                        .show()
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.faridaziz.kopinema.view.fragments
+package com.example.faridaziz.kopinema.view.fragments.menu
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,12 +13,17 @@ import kotlinx.android.synthetic.main.fragment_setting.*
 
 class SettingFragment
     : Fragment() {
+    companion object {
+        const val ARG = "ARG" }
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_setting, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val arg = arguments?.getInt(ARG, -1)
 
         fun attachFragment(data: String) {
             val intent = Intent(context, SettingActivity::class.java)
