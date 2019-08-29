@@ -8,7 +8,7 @@
     android:background="@drawable/main_background"
     android:orientation="vertical"
     android:paddingTop="150dp"
-    tools:context=".view.activities.CustomActivity" >
+    tools:context=".view.fragments.CustomFragment" >
 
     <TextView
         android:id="@+id/lbl_perbandingan"

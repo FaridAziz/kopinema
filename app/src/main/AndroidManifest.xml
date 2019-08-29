@@ -16,16 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activities.ListRatioActivity" />
-        <activity android:name=".view.activities.RecommendationActivity" />
-        <activity android:name=".view.activities.CustomActivity"/>
+        <activity android:name=".view.fragments.ListRatioFragment" />
+        <activity android:name=".view.fragments.RecommendationFragment" />
+        <activity android:name=".view.fragments.CustomFragment"/>
         <activity android:name=".view.activities.SettingActivity" />
     </application>
 </manifest>
