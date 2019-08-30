@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.faridaziz.kopinema.R;
-import com.example.faridaziz.kopinema.SharedPreferences;
+import com.example.faridaziz.kopinema.SharePreference;
 import com.example.faridaziz.kopinema.view.activities.SettingActivity;
 import com.example.faridaziz.kopinema.view_model.StatusViewModel;
 
@@ -58,7 +58,7 @@ public class StatusFragment extends Fragment {
         Log.i(TAG, "onViewCreted: OK");
 
         // Get Shared Preferences
-        SharedPreferences pref = new SharedPreferences(getContext());
+        SharePreference pref = new SharePreference(getContext());
 
         // Binding View
         TextView did = (TextView) view.findViewById(R.id.lbl_device_id);
@@ -72,7 +72,7 @@ public class StatusFragment extends Fragment {
         if (pref.getIdBoard().equals("NONE")) {
             dialog.setTitle("Peringatan");
             dialog.setMessage("ID Board belum didaftarkan di aplikasi ini.");
-            dialog.setPositiveButton("Setting", setPrefOnClick(SharedPreferences.ID_BOARD));
+            dialog.setPositiveButton("Setting", setPrefOnClick(SharePreference.ID_BOARD));
             dialog.setNegativeButton("kembali", backOnClick);
             dialog.create().show();
         } else {

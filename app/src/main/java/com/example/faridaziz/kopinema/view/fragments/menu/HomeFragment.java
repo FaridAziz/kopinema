@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.faridaziz.kopinema.R;
-import com.example.faridaziz.kopinema.SharedPreferences;
+import com.example.faridaziz.kopinema.SharePreference;
 import com.example.faridaziz.kopinema.view.activities.SetRatioActivity;
 import com.example.faridaziz.kopinema.view.activities.SettingActivity;
 
@@ -56,7 +55,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         // Shared Preferences
-        SharedPreferences pref = new SharedPreferences(getContext());
+        SharePreference pref = new SharePreference(getContext());
 
         // Binding View
         CardView recomendationCard = (CardView) view.findViewById(R.id.menu_recomendation);
@@ -79,14 +78,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             if (pref.getUser().equals("Anonymous")) {
                 dialog.setTitle("Peringatan");
                 dialog.setMessage("Username belum didaftarkan di aplikasi ini.");
-                dialog.setPositiveButton("Setting", setPrefOnClick(SharedPreferences.USERNAME));
+                dialog.setPositiveButton("Setting", setPrefOnClick(SharePreference.USERNAME));
                 dialog.setNegativeButton("kembali", backOnClick);
                 dialog.create().show();
             }
         } else {
             dialog.setTitle("Peringatan");
             dialog.setMessage("ID Board belum didaftarkan di aplikasi ini.");
-            dialog.setPositiveButton("Setting", setPrefOnClick(SharedPreferences.ID_BOARD));
+            dialog.setPositiveButton("Setting", setPrefOnClick(SharePreference.ID_BOARD));
             dialog.setNegativeButton("kembali", backOnClick);
             dialog.create().show();
         }

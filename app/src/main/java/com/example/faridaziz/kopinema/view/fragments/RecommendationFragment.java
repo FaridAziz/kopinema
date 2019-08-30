@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.faridaziz.kopinema.App;
 import com.example.faridaziz.kopinema.R;
-import com.example.faridaziz.kopinema.SharedPreferences;
+import com.example.faridaziz.kopinema.SharePreference;
 import com.example.faridaziz.kopinema.models.Data;
 import com.example.faridaziz.kopinema.models.Rasio;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,7 +33,7 @@ public class RecommendationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SharedPreferences sharedPref = new SharedPreferences(getContext());
+        SharePreference sharedPref = new SharePreference(getContext());
 
         // Binding View
         EditText water = (EditText) view.findViewById(R.id.txt_ratio_water);

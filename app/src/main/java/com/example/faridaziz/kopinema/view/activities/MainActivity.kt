@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.faridaziz.kopinema.App
 import com.example.faridaziz.kopinema.R
-import com.example.faridaziz.kopinema.SharedPreferences
+import com.example.faridaziz.kopinema.SharePreference
 import com.example.faridaziz.kopinema.models.Board
 import com.example.faridaziz.kopinema.view.fragments.menu.HomeFragment
 import com.example.faridaziz.kopinema.view.fragments.menu.SettingFragment
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         const val ARG = "ARG" }
 
     val sharedPref by lazy {
-        SharedPreferences(this) }
+        SharePreference(this) }
 
     private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         val selectedFragment: Fragment = when (item.itemId) {
@@ -41,41 +41,41 @@ class MainActivity : AppCompatActivity() {
         true
     }
 
-    private val statusBoardListener = object : ValueEventListener {
-        override fun onCancelled(p0: DatabaseError) { Log.e(TAG, "Database Error") }
-
-        override fun onDataChange(p0: DataSnapshot) {
-            // This method is called once with the initial value and again
-            // whenever data at this location is updated.
-            for (data in p0.children) {
-                val value = data.getValue(Board::class.java) as Board
-
-                if (value.id == sharedPref.idBoard) {
-                    sharedPref.deviceIsActive = value.isActive
-                    sharedPref.deviceOnProcess = value.isOnProcess
-                }
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val arg = intent.getStringExtra(ARG) ?: "default"
-
+        // Get Argument from Intent
         // Get Instance Realtime Database
+        val arg = intent.getStringExtra(ARG) ?: "default"
         val database = FirebaseDatabase.getInstance()
 
         // Read Realtime Database
         // Reference : /database/board
         database.getReference(App.DB).child(App.BOARD)
-                .addValueEventListener(statusBoardListener)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) { Log.e(TAG, "Database Error") }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        // This method is called once with the initial value and again
+                        // whenever data at this location is updated.
+                        for (data in p0.children) {
+                            val value = data.getValue(Board::class.java)
+
+                            if (value?.id == sharedPref.idBoard) {
+                                Log.d(TAG, "onCreate: is active : "+ value.isActive)
+                                Log.d(TAG, "onCreate: is on process : "+ value.isOnProcess)
+
+                                sharedPref.deviceIsActive = value.isActive ?: false
+                                sharedPref.deviceOnProcess = value.isOnProcess ?: false
+                            }
+                        }
+                    }
+                })
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.setOnNavigationItemSelectedListener(navListener)
 
-        // TODO Testing parsing argument
         val fragment = when(arg) {
             "status" -> SettingFragment()
             else -> HomeFragment()

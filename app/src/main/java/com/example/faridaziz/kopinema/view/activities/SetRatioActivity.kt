@@ -1,23 +1,19 @@
 package com.example.faridaziz.kopinema.view.activities
 
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.faridaziz.kopinema.App
 import com.example.faridaziz.kopinema.R
-import com.example.faridaziz.kopinema.SharedPreferences
+import com.example.faridaziz.kopinema.SharePreference
 import com.example.faridaziz.kopinema.models.Data
 import com.example.faridaziz.kopinema.view.fragments.CustomFragment
 import com.example.faridaziz.kopinema.view.fragments.ListRatioFragment
 import com.example.faridaziz.kopinema.view.fragments.RecommendationFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class SetRatioActivity
@@ -29,7 +25,7 @@ class SetRatioActivity
     }
 
     val sharedPref by lazy {
-        SharedPreferences(this)}
+        SharePreference(this)}
     val dialog by lazy {
         AlertDialog.Builder(this) }
 

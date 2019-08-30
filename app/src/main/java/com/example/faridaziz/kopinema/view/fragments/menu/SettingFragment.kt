@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.faridaziz.kopinema.R
 import com.example.faridaziz.kopinema.view.activities.SettingActivity
-import com.example.faridaziz.kopinema.SharedPreferences
+import com.example.faridaziz.kopinema.SharePreference
 import kotlinx.android.synthetic.main.fragment_setting.*
 
 class SettingFragment
@@ -33,10 +33,10 @@ class SettingFragment
         }
 
         // Set username
-        menu_username.setOnClickListener { attachFragment(SharedPreferences.USERNAME) }
+        menu_username.setOnClickListener { attachFragment(SharePreference.USERNAME) }
 
         // Set Id Board
-        menu_device_id.setOnClickListener { attachFragment(SharedPreferences.ID_BOARD) }
+        menu_device_id.setOnClickListener { attachFragment(SharePreference.ID_BOARD) }
 
         // Set Wifi
         menu_device_network.setOnClickListener { attachFragment("WIFI") }
