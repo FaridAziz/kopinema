@@ -50,6 +50,18 @@ class MainActivity : AppCompatActivity() {
         val arg = intent.getStringExtra(ARG) ?: "default"
         val database = FirebaseDatabase.getInstance()
 
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNav.setOnNavigationItemSelectedListener(navListener)
+
+        val fragment = when(arg) {
+            "status" -> SettingFragment()
+            else -> HomeFragment()
+        }
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit()
+
         // Read Realtime Database
         // Reference : /database/board
         database.getReference(App.DB).child(App.BOARD)
@@ -72,17 +84,5 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 })
-
-        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNav.setOnNavigationItemSelectedListener(navListener)
-
-        val fragment = when(arg) {
-            "status" -> SettingFragment()
-            else -> HomeFragment()
-        }
-
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit()
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.example.faridaziz.kopinema.R;
 import com.example.faridaziz.kopinema.SharePreference;
 import com.example.faridaziz.kopinema.models.Data;
 import com.example.faridaziz.kopinema.models.Rasio;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.sql.Timestamp;
@@ -38,6 +40,7 @@ public class RecommendationFragment extends Fragment {
         // Binding View
         EditText water = (EditText) view.findViewById(R.id.txt_ratio_water);
         EditText coffee = (EditText) view.findViewById(R.id.txt_ratio_coffee);
+        Button start = (Button) view.findViewById(R.id.btn_start);
 
         Rasio rasio = new Rasio(
                 Double.valueOf(water.getText().toString()),
@@ -45,21 +48,28 @@ public class RecommendationFragment extends Fragment {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        Data data = new Data(
-                sharedPref.getIdBoard(),
-                sharedPref.getUser(),
-                timestamp.toString(),
-                false, rasio
-        );
+        final Data data = new Data (
+                sharedPref.getIdBoard(), sharedPref.getUser(), timestamp.toString(),
+                false, rasio);
 
-        // Get instance
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get instance
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        // Read Realtime Database
-        // Reference : /database/board
-        database.getReference(App.DB).child(App.QUEUE)
-                .push()
-                .setValue(data);
-        // TODO Cek apakah berjalan sesuai dengan harapan atau tidak.
+                // Read Realtime Database
+                // Reference : /database/board
+                database.getReference(App.DB).child(App.QUEUE)
+                        .push()
+                        .setValue(data)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                getActivity().finish();
+                            }
+                        });
+            }
+        });
     }
 }
