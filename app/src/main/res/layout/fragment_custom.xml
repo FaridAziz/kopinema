@@ -96,6 +96,7 @@
         app:layout_constraintEnd_toEndOf="@id/spinner_coffee"/>
 
     <Button
+        android:id="@+id/btn_start"
         android:background="@color/colorMain"
         android:text="MULAI"
         android:textColor="@android:color/white"

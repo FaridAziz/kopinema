@@ -22,6 +22,7 @@
 
     <EditText
         android:id="@+id/txt_ratio_water"
+        android:editable="false"
         android:elevation="4dp"
         android:text="1"
         android:textAlignment="center"
@@ -62,6 +63,7 @@
     <EditText
         android:id="@+id/txt_ratio_coffee"
         android:elevation="4dp"
+        android:editable="false"
         android:text="15"
         android:textAlignment="center"
         android:textSize="32sp"

@@ -2,6 +2,7 @@ package com.example.faridaziz.kopinema.view.activities
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.faridaziz.kopinema.App
@@ -21,7 +22,10 @@ class MainActivity : AppCompatActivity() {
     val TAG = this.javaClass.simpleName
 
     companion object {
-        const val ARG = "ARG" }
+        const val ARG = "ARG"
+        const val START = "START"
+        const val ON_QUEUE = "on_queue"
+    }
 
     val sharedPref by lazy {
         SharePreference(this) }
@@ -54,6 +58,14 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setOnNavigationItemSelectedListener(navListener)
 
         val fragment = when(arg) {
+            ON_QUEUE -> {
+                Toast.makeText(MainActivity@this, "Tidak dapat melakukan operasi ini karena anda masuk dalam antrian.", Toast.LENGTH_SHORT)
+                        .show()
+                StatusFragment()
+            }
+
+            START -> StatusFragment()
+
             "status" -> SettingFragment()
             else -> HomeFragment()
         }

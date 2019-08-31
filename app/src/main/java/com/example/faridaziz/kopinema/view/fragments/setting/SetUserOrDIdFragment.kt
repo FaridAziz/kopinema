@@ -1,6 +1,7 @@
-package com.example.faridaziz.kopinema.view.fragments
+package com.example.faridaziz.kopinema.view.fragments.setting
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.faridaziz.kopinema.App
 import com.example.faridaziz.kopinema.R
 import com.example.faridaziz.kopinema.SharePreference
 import com.example.faridaziz.kopinema.models.Board
+import com.example.faridaziz.kopinema.view.activities.MainActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -109,6 +111,7 @@ class SetUserOrDIdFragment : Fragment() {
                     }
                 })
 
+                startActivity(Intent(context, MainActivity::class.java))
                 activity?.finish()
             }
         }

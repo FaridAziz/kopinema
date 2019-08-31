@@ -12,6 +12,7 @@ class SharePreference(app: Context) {
         const val USERNAME = "USERNAME"
         const val DEVICE_IS_ACTIVE = "DEVICE_IS_ACTIVE"
         const val DEVICE_ON_PROCESS = "DEVICE_ON_PROCESS"
+        const val ON_QUEUE = "ON_QUEUE"
     }
 
     var idBoard: String
@@ -29,6 +30,10 @@ class SharePreference(app: Context) {
     var deviceOnProcess: Boolean
         get() = sharedPreferences.getBoolean(DEVICE_ON_PROCESS, false)
         set(value) = share { it.putBoolean(DEVICE_ON_PROCESS, value)}
+
+    var onQueue: Boolean
+        get() = sharedPreferences.getBoolean(ON_QUEUE, false)
+        set(value) = share { it.putBoolean(ON_QUEUE, value)}
 
     private val share: (callback: (it: SharedPreferences.Editor)-> Unit) -> Unit = { callback ->
         with(sharedPreferences.edit()) {

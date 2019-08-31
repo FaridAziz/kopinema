@@ -20,7 +20,7 @@ class StatusViewModel(app: Application) : AndroidViewModel(app) {
     fun getStatus(textView: TextView) {
         if (sharedPref.deviceIsActive) {
             if (sharedPref.deviceOnProcess) {
-                textView.text = "Device sedang memproses kopi untuk Pengguna Lain"
+                textView.text = "Device sedang menyeduh kopi untuk Pengguna Lain"
 
                 // Instance Database
                 val database = FirebaseDatabase.getInstance()
@@ -36,7 +36,10 @@ class StatusViewModel(app: Application) : AndroidViewModel(app) {
                                 Log.d(TAG, "onDataChange : " + value)
 
                                 if (value.contains(sharedPref.idBoard)) {
-                                    textView.text = "Device Sedang memproses kopi Anda."
+                                    sharedPref.onQueue = true
+                                    textView.text = "Device Sedang menyeduh kopi Anda."
+                                } else {
+                                    sharedPref.onQueue = false
                                 }
                             }
                         })

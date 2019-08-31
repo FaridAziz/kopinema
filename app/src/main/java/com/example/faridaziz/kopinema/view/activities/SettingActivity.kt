@@ -4,11 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.faridaziz.kopinema.R
 import com.example.faridaziz.kopinema.SharePreference
-import com.example.faridaziz.kopinema.view.fragments.SetUserOrDIdFragment
-import com.example.faridaziz.kopinema.view.fragments.SetWifiFragment
+import com.example.faridaziz.kopinema.view.fragments.setting.SetUserOrDIdFragment
+import com.example.faridaziz.kopinema.view.fragments.setting.SetWifiFragment
 
-class SettingActivity
-    : AppCompatActivity() {
+class SettingActivity : AppCompatActivity() {
     companion object {
         const val RECEIVE_DATA = "DATA"
     }

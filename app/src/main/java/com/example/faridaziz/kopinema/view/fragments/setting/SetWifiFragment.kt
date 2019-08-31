@@ -1,4 +1,4 @@
-package com.example.faridaziz.kopinema.view.fragments
+package com.example.faridaziz.kopinema.view.fragments.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater

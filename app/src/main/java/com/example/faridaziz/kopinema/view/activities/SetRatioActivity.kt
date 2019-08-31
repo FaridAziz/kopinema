@@ -1,6 +1,7 @@
 package com.example.faridaziz.kopinema.view.activities
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
@@ -14,10 +15,10 @@ import com.example.faridaziz.kopinema.view.fragments.ListRatioFragment
 import com.example.faridaziz.kopinema.view.fragments.RecommendationFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class SetRatioActivity
-    : AppCompatActivity() {
+class SetRatioActivity : AppCompatActivity() {
     val TAG = this.javaClass.simpleName
 
     companion object {
@@ -39,7 +40,6 @@ class SetRatioActivity
                 val value = p.getValue(Data::class.java) as Data
 
                 if (value.id_board == sharedPref.idBoard) {
-                    // TODO Testing
                     dialog.setTitle("Peringatan")
                             .setMessage("Aplikasi ini Sudah terdaftar dalam antrian")
                             .setNegativeButton("kembali", backOnClick)
@@ -56,8 +56,18 @@ class SetRatioActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_set_ratio)
+
+        // Get SharedPreferences
+        val sharedPref = SharePreference(this)
+
+        if (sharedPref.onQueue) {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(MainActivity.ARG, MainActivity.ON_QUEUE)
+
+            startActivity(intent)
+            finish()
+        }
 
         val choice = intent.getIntExtra(ARG, -1)
         Log.d(TAG, "choice: $choice")
