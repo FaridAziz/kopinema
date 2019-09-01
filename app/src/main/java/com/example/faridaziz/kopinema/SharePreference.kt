@@ -12,7 +12,7 @@ class SharePreference(app: Context) {
         const val USERNAME = "USERNAME"
         const val DEVICE_IS_ACTIVE = "DEVICE_IS_ACTIVE"
         const val DEVICE_ON_PROCESS = "DEVICE_ON_PROCESS"
-        const val ON_QUEUE = "ON_QUEUE"
+        const val ON_QUEUE = "VALUE_ON_QUEUE"
     }
 
     var idBoard: String

@@ -8,6 +8,15 @@
     <string name="Pilih">Pilih</string>
     <string name="Custom">Custom</string>
 
+    <!--  Status Message  -->
+    <string name="statusOnQueue">Device sedang menyeduh kopi untuk Pengguna Lain</string>
+    <string name="statusOnProcess">Device Sedang menyeduh kopi Anda.</string>
+    <string name="statusNotReady">Device Belum Siap Digunakan</string>
+    <string name="statusReady">Device Siap Digunakan</string>
+
+    <!--  Warning Message  -->
+    <string name="warningOnQueue">"Tidak dapat melakukan operasi ini karena anda masuk dalam antrian."</string>
+
     <string-array name="nomer">
         <item>1</item>
         <item>2</item>

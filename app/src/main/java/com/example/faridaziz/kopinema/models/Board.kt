@@ -4,13 +4,13 @@ import com.google.firebase.database.IgnoreExtraProperties
 import com.google.firebase.database.PropertyName
 
 @IgnoreExtraProperties
-class Board {
+data class Board (
         @PropertyName("id")
-        var id: String? = ""
-
-        @PropertyName("isActive")
-        var isActive: Boolean? = true
+        var id: String? = "",
 
         @PropertyName("onProcess")
-        var isOnProcess: Boolean? = true
-}
+        var isOnProcess: Boolean? = true,
+
+        @PropertyName("active")
+        var active: Boolean? = true
+)

@@ -18,8 +18,8 @@
 
     <TextView
         android:id="@+id/lbl_device_id"
-        android:text="Device Id \n"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
         android:layout_width="0dp"
@@ -32,11 +32,12 @@
 
     <TextView
         android:id="@+id/txt_status"
-        android:text="Mesin Siap Digunakan"
+        android:text="@string/statusNotReady"
         android:textAlignment="center"
         android:textColor="@color/colorMain"
         android:textStyle="bold"
-        android:textSize="24sp"
+        android:textSize="20sp"
+        android:textAllCaps="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
