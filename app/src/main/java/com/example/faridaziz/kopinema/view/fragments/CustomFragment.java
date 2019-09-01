@@ -114,7 +114,7 @@ public class CustomFragment extends Fragment {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Intent intent = new Intent(getContext(), MainActivity.class);
-                                intent.putExtra(MainActivity.ARG, MainActivity.START);
+                                intent.putExtra(MainActivity.KEY_ARG, MainActivity.VALUE_START);
 
                                 startActivity(intent);
                                 getActivity().finish();

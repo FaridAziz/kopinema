@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_setting.*
 class SettingFragment
     : Fragment() {
     companion object {
-        const val ARG = "ARG" }
+        const val ARG = "KEY_ARG" }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -32,13 +32,9 @@ class SettingFragment
             startActivity(intent)
         }
 
-        // Set username
+
         menu_username.setOnClickListener { attachFragment(SharePreference.USERNAME) }
-
-        // Set Id Board
         menu_device_id.setOnClickListener { attachFragment(SharePreference.ID_BOARD) }
-
-        // Set Wifi
         menu_device_network.setOnClickListener { attachFragment("WIFI") }
     }
 }

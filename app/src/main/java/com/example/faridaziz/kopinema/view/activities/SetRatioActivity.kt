@@ -10,76 +10,42 @@ import androidx.fragment.app.Fragment
 import com.example.faridaziz.kopinema.R
 import com.example.faridaziz.kopinema.SharePreference
 import com.example.faridaziz.kopinema.models.Data
+import com.example.faridaziz.kopinema.utils.FragmentManagement
+import com.example.faridaziz.kopinema.utils.setWindowTransparent
 import com.example.faridaziz.kopinema.view.fragments.CustomFragment
 import com.example.faridaziz.kopinema.view.fragments.ListRatioFragment
 import com.example.faridaziz.kopinema.view.fragments.RecommendationFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class SetRatioActivity : AppCompatActivity() {
     val TAG = this.javaClass.simpleName
 
     companion object {
-        const val ARG = "ARG"
-    }
+        const val ARG = "KEY_ARG" }
 
     val sharedPref by lazy {
         SharePreference(this)}
-    val dialog by lazy {
-        AlertDialog.Builder(this) }
-
-    private val queueListener = object : ValueEventListener {
-        override fun onCancelled(p0: DatabaseError) { Log.e(TAG, "Database Error") }
-
-        override fun onDataChange(p0: DataSnapshot) {
-            // This method is called once with the initial value and again
-            // whenever data at this location is updated.
-            for (p in p0.children) {
-                val value = p.getValue(Data::class.java) as Data
-
-                if (value.id_board == sharedPref.idBoard) {
-                    dialog.setTitle("Peringatan")
-                            .setMessage("Aplikasi ini Sudah terdaftar dalam antrian")
-                            .setNegativeButton("kembali", backOnClick)
-                            .create().show()
-                    finish()
-                }
-            }
-        }
-    }
-
-    private val backOnClick = DialogInterface.OnClickListener { dialogInterface, i ->
-        dialogInterface.dismiss()
-    }
+    val fragmentManagement = FragmentManagement(
+            R.id.set_ratio_container, supportFragmentManager)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setWindowTransparent(window)
         setContentView(R.layout.activity_set_ratio)
 
-        // Get SharedPreferences
-        val sharedPref = SharePreference(this)
-
         if (sharedPref.onQueue) {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra(MainActivity.ARG, MainActivity.ON_QUEUE)
-
-            startActivity(intent)
+            startActivity(Intent(this, MainActivity::class.java).apply {
+                this.putExtra(MainActivity.KEY_ARG, MainActivity.VALUE_ON_QUEUE) })
             finish()
         }
 
-        val choice = intent.getIntExtra(ARG, -1)
-        Log.d(TAG, "choice: $choice")
-        val selectedFragment: Fragment = when (choice) {
+        fragmentManagement.replace(when (intent.getIntExtra(ARG, -1)) {
             0 -> ListRatioFragment()
             1 -> RecommendationFragment()
             2 -> CustomFragment()
             else -> CustomFragment()
-        }
-
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.set_ratio_container, selectedFragment)
-                .commit()
+        })
     }
 }

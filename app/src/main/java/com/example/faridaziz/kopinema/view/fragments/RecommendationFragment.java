@@ -28,7 +28,7 @@ import java.util.List;
 
 public class RecommendationFragment extends Fragment {
 
-    public static final String ARG = "ARG";
+    public static final String ARG = "KEY_ARG";
 
     @Nullable
     @Override
@@ -86,7 +86,7 @@ public class RecommendationFragment extends Fragment {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Intent intent = new Intent(getContext(), MainActivity.class);
-                                intent.putExtra(MainActivity.ARG, MainActivity.START);
+                                intent.putExtra(MainActivity.KEY_ARG, MainActivity.VALUE_START);
                                 startActivity(intent);
                                 getActivity().finish();
                             }

@@ -5,7 +5,9 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
+import com.example.faridaziz.kopinema.R
 import com.example.faridaziz.kopinema.repo.BoardRepository
+import com.example.faridaziz.kopinema.utils.showMessage
 import com.example.faridaziz.kopinema.view.activities.MainActivity
 
 /**
@@ -25,18 +27,13 @@ class SettingViewModel(val app: Application) : AndroidViewModel(app) {
 
         repo.send(params).observe(owner, Observer {
             if (it == "success") {
-                Toast.makeText(app, "IoT Device Telah Berjalan. Terimakasih.",
-                        Toast.LENGTH_SHORT)
-                        .show()
+                showMessage(app, R.string.statusNetRunning)
 
                 val activity = app.applicationContext as AppCompatActivity
                 activity.startActivity(Intent(app, MainActivity::class.java))
                 activity.finish()
             } else {
-                Toast.makeText(
-                        app, "Coba Ulangi Lagi.", Toast.LENGTH_SHORT
-                ).show()
-            }
+                showMessage(app, R.string.tipsTryAgain) }
         })
     }
 }

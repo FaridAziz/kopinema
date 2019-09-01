@@ -1,100 +1,61 @@
 package com.example.faridaziz.kopinema.view.activities
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.faridaziz.kopinema.App
+import androidx.lifecycle.ViewModelProviders
 import com.example.faridaziz.kopinema.R
-import com.example.faridaziz.kopinema.SharePreference
-import com.example.faridaziz.kopinema.models.Board
+import com.example.faridaziz.kopinema.utils.FragmentManagement
 import com.example.faridaziz.kopinema.view.fragments.menu.HomeFragment
 import com.example.faridaziz.kopinema.view.fragments.menu.SettingFragment
 import com.example.faridaziz.kopinema.view.fragments.menu.StatusFragment
+import com.example.faridaziz.kopinema.view_model.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.example.faridaziz.kopinema.utils.setWindowTransparent
+import com.example.faridaziz.kopinema.utils.showMessage
+
 
 class MainActivity : AppCompatActivity() {
-    val TAG = this.javaClass.simpleName
-
     companion object {
-        const val ARG = "ARG"
-        const val START = "START"
-        const val ON_QUEUE = "on_queue"
+        const val KEY_ARG = "KEY_ARG"
+        const val VALUE_START = "VALUE_START"
+        const val VALUE_ON_QUEUE = "on_queue"
+        const val VALUE_STATUS = "status"
     }
 
-    val sharedPref by lazy {
-        SharePreference(this) }
-
-    private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        val selectedFragment: Fragment = when (item.itemId) {
-            R.id.nav_home -> HomeFragment()
-            R.id.nav_status -> StatusFragment()
-            R.id.nav_setting -> SettingFragment()
-            else -> Fragment()
-        }
-
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, selectedFragment)
-                .commit()
-
-        true
-    }
+    private val TAG = this.javaClass.simpleName
+    private val fragmentManagement = FragmentManagement(
+            R.id.fragment_container, supportFragmentManager)
+    private val viewModel by lazy {
+        ViewModelProviders.of(this).get(MainViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setWindowTransparent(window)
         setContentView(R.layout.activity_main)
 
-        // Get Argument from Intent
-        // Get Instance Realtime Database
-        val arg = intent.getStringExtra(ARG) ?: "default"
-        val database = FirebaseDatabase.getInstance()
-
-        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNav.setOnNavigationItemSelectedListener(navListener)
-
-        val fragment = when(arg) {
-            ON_QUEUE -> {
-                Toast.makeText(MainActivity@this, "Tidak dapat melakukan operasi ini karena anda masuk dalam antrian.", Toast.LENGTH_SHORT)
-                        .show()
+        viewModel.listenBoard()
+        fragmentManagement.replace(when(intent.getStringExtra(KEY_ARG) ?: "default") {
+            VALUE_ON_QUEUE -> {
+                val msg = R.string.warningOnQueue
+                showMessage(this, msg)
                 StatusFragment()
             }
-
-            START -> StatusFragment()
-
-            "status" -> SettingFragment()
+            VALUE_START -> StatusFragment()
+            VALUE_STATUS -> SettingFragment()
             else -> HomeFragment()
-        }
+        })
 
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit()
+        findViewById<BottomNavigationView>(R.id.bottom_navigation)
+                .setOnNavigationItemSelectedListener { item ->
+                    fragmentManagement.replace(when (item.itemId) {
+                        R.id.nav_home -> HomeFragment()
+                        R.id.nav_status -> StatusFragment()
+                        R.id.nav_setting -> SettingFragment()
+                        else -> Fragment()
+                    })
 
-        // Read Realtime Database
-        // Reference : /database/board
-        database.getReference(App.DB).child(App.BOARD)
-                .addValueEventListener(object : ValueEventListener {
-                    override fun onCancelled(p0: DatabaseError) { Log.e(TAG, "Database Error") }
-
-                    override fun onDataChange(p0: DataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        for (data in p0.children) {
-                            val value = data.getValue(Board::class.java)
-
-                            if (value?.id == sharedPref.idBoard) {
-                                Log.d(TAG, "onCreate: is active : "+ value.isActive)
-                                Log.d(TAG, "onCreate: is on process : "+ value.isOnProcess)
-
-                                sharedPref.deviceIsActive = value.isActive ?: false
-                                sharedPref.deviceOnProcess = value.isOnProcess ?: false
-                            }
-                        }
-                    }
-                })
+                    true
+                }
     }
 }

@@ -14,6 +14,7 @@ import com.example.faridaziz.kopinema.App
 import com.example.faridaziz.kopinema.R
 import com.example.faridaziz.kopinema.SharePreference
 import com.example.faridaziz.kopinema.models.Board
+import com.example.faridaziz.kopinema.utils.showMessage
 import com.example.faridaziz.kopinema.view.activities.MainActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -25,8 +26,7 @@ class SetUserOrDIdFragment : Fragment() {
     private val TAG = this.javaClass.simpleName
 
     companion object {
-        const val ARG_ = "SET_APA_"
-    }
+        const val ARG_ = "SET_APA_" }
 
     private var _set_: String? = null
 
@@ -35,18 +35,15 @@ class SetUserOrDIdFragment : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-
         _set_ = arguments?.getString(ARG_) ?: ""
     }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? = inflater.inflate(
-            if (_set_ == "USERNAME")
-                R.layout.fragment_set_username
-            else
-                R.layout.fragment_set_device_id
-            ,container, false)
+                    if (_set_ == "USERNAME") R.layout.fragment_set_username
+                    else R.layout.fragment_set_device_id
+            , container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,9 +59,7 @@ class SetUserOrDIdFragment : Fragment() {
             val reference = database.getReference(App.DB)
 
             if (data.isEmpty()) {
-                Toast.makeText(context, "Input Tidak boleh Kosong", Toast.LENGTH_SHORT)
-                        .show()
-
+                showMessage(context!!, R.string.warningInputEmpty)
                 return@setOnClickListener
             }
 
@@ -77,14 +72,11 @@ class SetUserOrDIdFragment : Fragment() {
                      */
                     val params = mapOf<String, String>(
                             "id_board" to sharedPreferences.idBoard,
-                            "username" to data
-                    )
+                            "username" to data )
 
                     reference.child(App.USER).push().setValue(params)
                     sharedPreferences.user = data
-                } else Toast.makeText(context,
-                        "Set Device Id Terlebih Dahulu", Toast.LENGTH_SHORT)
-                        .show()
+                } else showMessage(context!!, R.string.warningIdNotSet)
 
                 activity?.finish()
             } else {
@@ -104,9 +96,8 @@ class SetUserOrDIdFragment : Fragment() {
                             if (board.id == data) {
                                 sharedPreferences.idBoard = data
                                 break
-                            } else Toast.makeText(context,
-                                    "ID Board Tidak dikenali.", Toast.LENGTH_SHORT)
-                                    .show()
+                            } else {
+                                showMessage(context!!, R.string.warningIdNotFound) }
                         }
                     }
                 })
