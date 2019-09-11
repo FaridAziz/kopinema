@@ -7,7 +7,8 @@ data class Data (
         val name: String,
         val time: String,
         val on_complete: Boolean,
-        val rasio: Rasio
+        val rasio: Rasio,
+        val username: String
 ) {
     @Exclude
     fun toMap(): Map<String, Any?> = mapOf(

@@ -75,7 +75,7 @@ public class RecommendationFragment extends Fragment {
 
                 final Data data = new Data (
                         sharedPref.getIdBoard(), sharedPref.getUser(), timestamp.toString(),
-                        false, rasio);
+                        false, rasio, sharedPref.getUser());
 
                 // Write Realtime Database
                 // Reference : /database/queue

@@ -50,7 +50,7 @@ class StatusViewModel(val app: Application) : AndroidViewModel(app) {
                         val value = p0.value.toString()
                         Log.d(TAG, "onDataChange : $value")
 
-                        if (value.contains(sharedPref.idBoard)) {
+                        if (value.contains(sharedPref.user)) {
                             sharedPref.onQueue = true
                             status.postValue(string(R.string.statusOnProcess))
                         } else {

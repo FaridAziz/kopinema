@@ -100,7 +100,7 @@ public class CustomFragment extends Fragment {
 
                 final Data data = new Data (
                         sharedPref.getIdBoard(), sharedPref.getUser(), timestamp.toString(),
-                        false, rasio);
+                        false, rasio, sharedPref.getUser());
 
                 // Get instance
                 FirebaseDatabase database = FirebaseDatabase.getInstance();

@@ -74,11 +74,25 @@ class SetUserOrDIdFragment : Fragment() {
                             "id_board" to sharedPreferences.idBoard,
                             "username" to data )
 
-                    reference.child(App.USER).push().setValue(params)
-                    sharedPreferences.user = data
-                } else showMessage(context!!, R.string.warningIdNotSet)
+                    reference.child(App.USER)
+                            .addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onCancelled(p0: DatabaseError) {}
 
-                activity?.finish()
+                                override fun onDataChange(p0: DataSnapshot) {
+                                    val dataString = p0.value.toString()
+                                    val username = sharedPreferences.user
+
+                                    if(! dataString.contains(edt.text.toString())) {
+                                        reference.child(App.USER).push().setValue(params)
+                                        sharedPreferences.user = data
+                                        activity?.finish()
+                                    } else {
+                                        Toast.makeText(context, "Username Sudah terdaftar",
+                                                Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            })
+                } else showMessage(context!!, R.string.warningIdNotSet)
             } else {
                 /**
                  * Mengambil data board dengan referensi /database/board
