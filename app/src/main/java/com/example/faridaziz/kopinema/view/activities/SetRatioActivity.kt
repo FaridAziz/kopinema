@@ -48,4 +48,9 @@ class SetRatioActivity : AppCompatActivity() {
             else -> CustomFragment()
         })
     }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        super.onBackPressed()
+    }
 }
