@@ -26,8 +26,8 @@
 
     <Spinner
         android:id="@+id/spinner_water"
-        android:orientation="vertical"
         android:elevation="4dp"
+        android:text="1"
         android:textAlignment="center"
         android:textSize="32sp"
         android:background="@android:color/white"
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/lbl_ratio_water"
-        android:text="AIR"
+        android:text="KOPI"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -84,7 +84,7 @@
 
     <TextView
         android:id="@+id/lbl_ratio_coffee"
-        android:text="KOPI"
+        android:text="AIR"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"

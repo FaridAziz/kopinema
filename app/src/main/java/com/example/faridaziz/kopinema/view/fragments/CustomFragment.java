@@ -75,7 +75,7 @@ public class CustomFragment extends Fragment {
 
         // Create Adapter For Spinner
         ArrayAdapter<CharSequence> waterAdapter = ArrayAdapter.createFromResource(
-                getContext(), R.array.nomer, android.R.layout.simple_spinner_item);
+                getContext(), R.array.nomorKopi, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> coffeeAdapter = ArrayAdapter.createFromResource(
                 getContext(), R.array.nomer, android.R.layout.simple_spinner_item);
 

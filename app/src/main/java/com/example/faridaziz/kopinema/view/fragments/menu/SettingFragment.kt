@@ -35,6 +35,7 @@ class SettingFragment
 
         menu_username.setOnClickListener { attachFragment(SharePreference.USERNAME) }
         menu_device_id.setOnClickListener { attachFragment(SharePreference.ID_BOARD) }
-        menu_device_network.setOnClickListener { attachFragment("WIFI") }
+        menu_device_network.visibility = View.GONE
+//        menu_device_network.setOnClickListener { attachFragment("WIFI") }
     }
 }
